@@ -1,4 +1,4 @@
-import React, {setState, useState} from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 
 function Signup() {
@@ -20,9 +20,8 @@ function Signup() {
     .then(json => {
       setError(json.error);
     })
+    alert("Registration Successful!")
   }
-
-
 
   return (
     <>

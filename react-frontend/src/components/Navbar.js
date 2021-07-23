@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom';
+import { Context } from '../store/appContext';
 import './Navbar.css';
 import {Button} from './Button';
 
 function Navbar() {
   const[click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const { store, actions} = useContext(Context);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -39,6 +41,17 @@ function Navbar() {
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
+            </li>
+            <li className='nav-item'>
+              {!store.token ? 
+                <Link to='/Login' className='nav-links' onClick={closeMobileMenu}>
+                  Login
+                </Link>
+                :
+                 <Link to="/" className='nav-links-Log' onClick={() => actions.logout()}>
+                    Logout
+                  </Link> 
+              }
             </li>
             <li>
               <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
