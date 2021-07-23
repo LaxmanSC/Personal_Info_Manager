@@ -4,10 +4,17 @@ from flask_cors import CORS
 
 from flask import Flask, render_template
 
+
+from flask_jwt_extended import JWTManager
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__,instance_relative_config=True)
     CORS(app)
+
+    app.config["JWT_SECRET_KEY"] = "Hello123"  # Change this!
+    jwt = JWTManager(app)
+
     app.config.from_mapping(
         SECRET_KEY = 'dev',
         DATABASE=os.path.join(app.instance_path, 'UserDeets.sqlite'),
