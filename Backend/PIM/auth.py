@@ -1,4 +1,8 @@
 import functools
+import os
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 from flask import (
     Blueprint,jsonify, flash, g, redirect, render_template, request, session, url_for
@@ -45,23 +49,21 @@ def login():
         username = obj.get('username')
         password = obj.get('password')
         db = get_db()
-        error = None
+        error= None;
         user = db.execute(
             'SELECT * FROM Users WHERE Username = ?', (username,)
         ).fetchone()
 
         if user is None:
-            error = 'Incorrect username.'
+            error = 'Error:Username does not exist.'
+            return jsonify(error=error), 401
         elif not check_password_hash(user['PassKey'], password):
-            error = 'Incorrect password.'
+            error = 'Error: Incorrect password.'
+            return jsonify(error=error), 401
 
         if error is None:
-            session.clear()
-            session['user_id'] = user['id']
-            return redirect(url_for('index'))
-
-        flash(error)
-    return render_template('auth/login.html')
+            access_token = create_access_token(identity=username)
+            return jsonify(access_token=access_token), 200
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -88,3 +90,5 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+# username = get_jwt_identity()
