@@ -1,0 +1,46 @@
+import React, {useState} from 'react'
+import { BrowserRouter as Router,Switch, Route} from "react-router-dom";
+
+import { Redirect } from 'react-router'
+
+function Login() {
+  const [error, setError] = useState("");
+  function submit(e) {
+    e.preventDefault()
+    const {username, password } = e.target.elements
+    fetch('/auth/login',{
+      method: "POST", 
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value
+      })
+    }).then(response => response.json())
+    .then( json => {
+      sessionStorage.setItem("token", json.access_token)
+    })
+  }
+  return (
+    <>
+      <div>
+        <form onSubmit={submit}>
+          <label for="username">Username:
+            <input type="text" name="username" id="username" required />
+          </label>
+          <label for="password">Password:
+            <input type="password" name="password" id="password" required />
+          </label>
+          <input type="submit" value="Register" />
+        </form>
+      </div>
+      <div>
+        {error}
+      </div>
+    </>
+  )
+}
+
+export default Login
