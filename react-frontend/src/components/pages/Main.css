@@ -15,8 +15,8 @@
   /* left: -200px; */
   flex-direction:row;
   /* background-color: #2196F3; */
-  border: 1px solid black;
-  border-radius: 10px;
+  /* border: 1px solid black;
+  border-radius: 50px; */
   padding-top: 10px;
 }
 
@@ -27,14 +27,14 @@
 .Newnote {
   /* display: flex; */
   position: relative;
-  background:green;
+  background:lightcoral;
   align-items: center;
   left: 1600px;
-  top: 300px;
-  background: yellow;
+  top: 100px;
+  /* background: yellow; */
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
 }
 
 .Newnote:hover {

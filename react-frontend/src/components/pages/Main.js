@@ -43,6 +43,8 @@ function Main() {
     <>
       <div>
         <div className="Newnote" onClick={togglePopup}>
+          <br />
+          Add New Note:
           <i class="fas fa-plus"></i>
         </div>
         {popup ? <AddNote toggle = {togglePopup} /> : null}
