@@ -23,27 +23,36 @@ function AddNote(toggle) {
     });
     toggle = !toggle;
     window.location.reload(false);
-
   }
+  // const InfoStyle ={
+  //   height: 100,
+  // }
 
   return (
     <div className="Popup">
       <div className="content">
         <form onSubmit={HandleSubmit}>
             <br />
-            <span>
+
               <label for="Title">Title:   
               <input type="text" name="Title" id="Title" placeholder="Title of note"/>
               </label>
-            </span>
             <br />
-            <label for="Notetext">Notetext:
-              <input type="text" name="Notetext" id="Notetext" placeholder="Enter Note" />
+            <br />
+            <label for="Notetext">
+              <span className="Notetitle">
+                Notetext:
+              </span>
+              {/* <input type="text" multiline rows ="10"  name="Notetext" id="Notetext" placeholder="Enter Note" /> */}
+              <textarea rows="4" name="Notetext" id="Notetext" placeholder="Enter Note Info" cols="50"> 
+              </textarea>
             </label>
+            <br />
             <br />
             <label for="Tags">Tags:
               <input type="text" name="Tags" id="Tags" placeholder="Tags"/>
             </label>
+            <br />
             <br />
             <input type="submit" value="Add Note" />
         </form>

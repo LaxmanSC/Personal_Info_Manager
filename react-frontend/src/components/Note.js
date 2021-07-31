@@ -51,17 +51,19 @@ function Note({Title, Info, Id, Tags}) {
       <div className="title">
         {Title}
       </div>
+
       <div className="noteinfo">
-        Info:
         {Info}
       </div>
-      <div className="Tags">
+      <div className="Tags"> Tags: 
         {Tags}
       </div>
       <div className="delete" onClick={DeleteNote}>
+        Delete Note:
         <i class="fas fa-window-close fa-3x"></i>
       </div>
       <div className="Edit" onClick={EditNote}>
+        Edit Note:
         <i class="fas fa-pencil-alt fa-2x"></i>
       </div>
     </div>
