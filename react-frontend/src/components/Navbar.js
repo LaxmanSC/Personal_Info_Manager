@@ -44,22 +44,26 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               {!store.token ? 
-                <Link to='/Login' className='nav-links' onClick={closeMobileMenu}>
-                  Login
-                </Link>
+                <div>
+                  <Link to='/Login' className='nav-links-cond' onClick={closeMobileMenu}>
+                    Login
+                  </Link>
+                  <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
+                    Sign Up
+                  </Link>
+                  <div className='nav-links-cond-2'>
+                    {button && <Button  buttonStyle = 'btn--outline'>SIGN UP</Button>}
+                  </div>
+                </div>
                 :
                  <Link to="/" className='nav-links-Log' onClick={() => actions.logout()}>
                     Logout
                   </Link> 
               }
             </li>
-            <li>
-              <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
-                Sign Up
-              </Link>
-            </li>
+            {/* <li>
+            </li> */}
           </ul>
-          {button && <Button buttonStyle = 'btn--outline'>SIGN UP</Button>}
         </div>
       </nav>
     </>

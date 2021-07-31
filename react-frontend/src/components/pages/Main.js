@@ -1,12 +1,23 @@
 import React, {useState, useEffect,useContext } from 'react'
 import { Context } from "../../store/appContext"
+import Note from "../Note"
+import './Main.css'
+import'../Note.css'
 
+import AddNote from '../note_operations/AddNote'
+import SearchNote from '../note_operations/SearchNote'
 function Main() {
   
   const {store, actions} = useContext(Context)
-  const [numNotes, setNumNotes] = useState(10)
-  const Notes = async () => {
-    console.log("hello please work")
+  const [notes, updateNotes] = useState([])
+
+  const [popup, setPopup] = useState(false)
+  const togglePopup = () => {
+    setPopup(!popup);
+  }
+
+  let arr =[];
+  const fetchNotes = async () => {
     const resp = await fetch('/main/', {
       method: "GET",
       mode: 'cors',
@@ -15,38 +26,43 @@ function Main() {
         'Authorization':"Bearer " + store.token
       },
     });
-    console.log("Token is:", store.token)
     if(resp.status === 200) {
       const data = await resp.json();
-      // console.log(data.num);
-      setNumNotes(data.num);
+      arr = data.data
+      updateNotes(arr)
+      console.log(" Array data",arr)  
+      console.log("state dataa",arr);     
     }
-  }
+  } 
   useEffect(() => {
-    console.log("Het")
-    Notes();
-    // console.log("useE")
-    // setNumNotes(10)
-    console.log("NumNotes is", numNotes);
-
+    actions.getTokenAfterRefresh();
+    fetchNotes();
   }, []);
-  console.log(numNotes)
+
   return (
     <>
-      HEy this is thee main page!!!
       <div>
-        Welcome {store.user}!
+        <div className="Newnote" onClick={togglePopup}>
+          <i class="fas fa-plus"></i>
+        </div>
+        {popup ? <AddNote toggle = {togglePopup} /> : null}
       </div>
-      <div>
-        {numNotes == 0 ?
-          <div>
-            Create a new note
-          </div>
-        :
-          <div>
-            Display notes
-          </div>
-        }
+      <div className="SearchBar">
+        <SearchNote />
+      </div>
+      <br />
+      <div className="container">
+        <div className="Noteslist">
+          { notes.map((note) => (
+            <div className="noteitem">
+              <Note Title = {note.Title}
+                    Info = {note.Info}
+                    Id = {note.NoteId}
+                    Tags = {note.tags}
+              /> 
+            </div>
+          ))}
+        </div>
       </div>
     </>
   )

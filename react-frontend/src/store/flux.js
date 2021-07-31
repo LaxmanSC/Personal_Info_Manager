@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			user: null,
       token: null,
 			demo: [
 				{
@@ -51,6 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
              return false; 
           }
           const data = await resp.json();
+					console.log("hello", data);
           sessionStorage.setItem("token", data.access_token)
           setStore({ token: data.access_token})
           return true;

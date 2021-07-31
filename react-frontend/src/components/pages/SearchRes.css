@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  overflow: scroll;
+  /* position: relative; */
+  /* left: -200px; */
+  width: 100%;
+}
+
+.Noteslist {
+  display: flex;
+  flex-wrap: wrap;
+  /* position: relative; */
+  width: 100%;
+  /* left: -200px; */
+  flex-direction:row;
+  /* background-color: #2196F3; */
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-top: 10px;
+}
+
+.noteitem {
+  padding: 20px;
+}

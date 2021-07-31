@@ -30,6 +30,8 @@ export default function Login() {
             </label>
             <input type="submit" value="Login" />
           </form>
+          {/* <i class="fa-solid fa-magnifying-glass"></i> */}
+
         </div>
       }
     </>

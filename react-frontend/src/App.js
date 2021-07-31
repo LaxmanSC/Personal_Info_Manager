@@ -5,6 +5,8 @@ import Signup from './components/pages/Signup';
 import Navbar from './components/Navbar';
 import Login from './components/pages/Login';
 import Main from './components/pages/Main';
+import SearchRes from './components/pages/SearchRes';
+import EditNote from './components/note_operations/EditNote'
 
 import injectContext from "./store/appContext";
 
@@ -18,6 +20,8 @@ function App() {
           <Route path="/sign-up" exact component={Signup} />
           <Route path="/Login" exact component={Login} />
           <Route path="/main" exact component={Main} />
+          <Route path="/main/search" exact component ={SearchRes} />
+          <Route path="/main/edit" exact component ={EditNote} />
         </Switch>
       </Router>
     </div>

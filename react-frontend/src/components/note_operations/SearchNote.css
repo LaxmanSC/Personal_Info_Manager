@@ -1,0 +1,15 @@
+/* *, ::after,::before */
+
+.SearchBar {
+  padding:20px; 
+}
+.SearchIcon {
+  color: blue;
+  position: relative;
+  left: 5px;
+  font-size:130%;
+}
+
+.SearchIcon:hover {
+  cursor: pointer;
+}
